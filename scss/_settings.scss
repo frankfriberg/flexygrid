@@ -1,0 +1,61 @@
+// _settings.scss
+
+// Grid
+// - Limit width with a yes and set the wanted width
+$limit-width		: yes;
+$grid-width			: 1000px;
+
+// - Grid breakpoints
+	$breakpoints : (
+		s 	: no,
+		m 	: 30rem,
+		l 	: 48rem,
+		xl 	: 56rem,
+		xxl	: 72rem
+	);
+
+// - Specific positioning for breakpoints
+	$breakpoint-positioning : no;
+
+
+// - Choose how many columns you want your grid to have
+	$grid-size			: 12;
+	$column-padding		: 15px;
+
+// Colors
+$primary-color		: blue;
+$success-color		: green;
+$info-color			: yellow;
+$warning-color		: red;
+
+// Typography
+$font-family-sans	: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-serif	: Georgia, "Times New Roman", Times, serif;
+
+	// - Base
+	$base-font-color	: #111;
+	$base-font-size		: 18px;
+	$base-family		: $font-family-sans;
+	$base-height		: 1.5;
+	$base-margin		: 20px;
+	$base-weight		: 300;
+
+	// - Headings
+	$headings-color		: #111;
+	$headings-family	: $font-family-serif;
+	$headings-height	: 1.1;
+	$headings-margin	: 12px;
+	$headings-weight	: 500;
+
+		// -- Heading Sizes
+		$font-size-h1		: 2.6em;
+		$font-size-h2		: 2.1em;
+		$font-size-h3		: 1.7em;
+		$font-size-h4		: 1.25em;
+		$font-size-h5		: 1em;
+		$font-size-h6		: 0.85em;
+	
+	// - Font Size Classes
+	$big-font		: 2.5em;
+	$medium-font	: 1.5em;
+	$small-font		: 0.5em;

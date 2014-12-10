@@ -1,0 +1,35 @@
+// _flexygrid.scss
+
+// Defining Rows
+.row {
+	box-sizing		: border-box;
+	display			: flex;
+	flex-direction	: row;
+	flex-wrap		: wrap;
+}
+
+@if $limit-width == "yes" {
+	.row {
+		max-width 	: rem($grid-width);
+		margin		: auto;
+	}
+}
+
+// Positioning
+.start	 { @include position (flex-start, start); }
+.center  { @include position (center, center); 	  }
+.end 	 { @include position (flex-end, end); 	  }
+.top 	 { align-items		: flex-start;		  }
+.middle	 { align-items		: center;			  }
+.bottom	 { align-items		: flex-end;			  }
+.around	 { justify-content	: space-around;		  }
+.between { justify-content	: space-between;	  }
+
+.auto {
+	flex-basis	: 0;
+	flex-grow	: 1;
+	max-width	: 100%;
+}
+
+// Create the grid with breakpoints
+@include createGrid($breakpoints);

@@ -1,0 +1,23 @@
+// _base.scss
+
+// Imports all modules
+@import "modules/all";
+
+// Cover background image with iOS fix
+/*.cover {
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+
+    @media (max-width: @iphone-screen) {
+        background-attachment: scroll;
+    }
+} */
+
+// Fixing responsive images
+img {
+	width 	: 100%;
+	height 	: auto;
+}
+
+// Fixing responsive embedded

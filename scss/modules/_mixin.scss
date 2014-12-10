@@ -1,0 +1,77 @@
+// _mixin.scss
+
+// Grid Mixins
+@mixin columns-property ($classes...) {
+    $selectors: ();
+    @each $c in $classes {
+        @for $i from 1 through $grid-size {
+            $selectors: append($selectors, unquote('.#{$c}#{$i}'), comma);
+        }
+    }
+
+    #{$selectors} {
+        box-sizing      : border-box;
+        display         : flex;
+        flex-direction  : column;
+        flex-grow       : 0;
+        flex-shrink     : 0;
+        padding         : 0 rem($column-padding);
+    }
+}
+
+@mixin columns {
+    @for $i from 1 through $grid-size {
+        $width : ($i / $grid-size) * 100%;
+        &#{$i} {
+            flex-basis  : $width;
+            max-width   : $width;
+        }
+    }
+
+    &-start   { @include position (flex-start, start); }
+    &-center  { @include position (center, center);    }
+    &-end     { @include position (flex-end, end);     }
+    &-top     { align-items      : flex-start;         }
+    &-middle  { align-items      : center;             }
+    &-bottom  { align-items      : flex-end;           }
+    &-around  { justify-content  : space-around;       }
+    &-between { justify-content  : space-between;      }
+}   
+
+@mixin position ($flexpos, $flexalign) {
+    justify-content : $flexpos;
+    text-align      : $flexalign;
+}
+
+// Breakpoint Mixins
+@mixin createColumns($name) {
+    @for $i from 1 through $grid-size {
+        $width : ($i / $grid-size) * 100%;
+        .#{$name}#{$i} {
+            flex-basis  : $width;
+            max-width   : $width;
+        }
+    }
+    @if $breakpoint-positioning == yes {
+        .#{$name}-start   { @include position (flex-start, start); }
+        .#{$name}-center  { @include position (center, center);    }
+        .#{$name}-end     { @include position (flex-end, end);     }
+        .#{$name}-top     { align-items      : flex-start;         }
+        .#{$name}-middle  { align-items      : center;             }
+        .#{$name}-bottom  { align-items      : flex-end;           }
+        .#{$name}-around  { justify-content  : space-around;       }
+        .#{$name}-between { justify-content  : space-between;      }
+    }
+}
+
+@mixin createGrid($breakpoints) {
+    @each $name, $break in $breakpoints {
+        @if $break == "no" {
+            @include createColumns($name);
+        } @else {
+            @media only screen and (min-width: #{$break}) {
+                @include createColumns($name);
+            }
+        }
+    }
+}
