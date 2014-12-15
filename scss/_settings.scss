@@ -16,6 +16,7 @@ $grid-width			: 1000px;
 
 // - Specific positioning for breakpoints
 	$breakpoint-positioning : no;
+	$breakpoint-limiting	: no;
 
 
 // - Choose how many columns you want your grid to have
@@ -24,6 +25,7 @@ $grid-width			: 1000px;
 
 // Colors
 $primary-color		: blue;
+$secondary-color	: red;
 $success-color		: green;
 $info-color			: yellow;
 $warning-color		: red;
@@ -59,3 +61,11 @@ $font-family-serif	: Georgia, "Times New Roman", Times, serif;
 	$big-font		: 2.5em;
 	$medium-font	: 1.5em;
 	$small-font		: 0.5em;
+
+// Navitgation
+$navbar-bgcolor		: skyblue;
+$navbar-text-color	: white;
+
+$navbar-small	: spaced;
+$navbar-medium	: left;
+$navbar-big		: right;

@@ -1,14 +1,19 @@
 // _mixin.scss
 
-// Grid Mixins
-@mixin columns-property ($classes...) {
+// Positioning for the flexbox
+@mixin position ($flexpos, $flexalign) {
+    justify-content : $flexpos;
+    text-align      : $flexalign;
+}
+
+// Columns property mixin
+@mixin columns-property ($breakpoints) {
     $selectors: ();
-    @each $c in $classes {
+    @each $name, $break in $breakpoints {
         @for $i from 1 through $grid-size {
-            $selectors: append($selectors, unquote('.#{$c}#{$i}'), comma);
+            $selectors: append($selectors, unquote('.#{$name}#{$i}'), comma);
         }
     }
-
     #{$selectors} {
         box-sizing      : border-box;
         display         : flex;
@@ -17,30 +22,6 @@
         flex-shrink     : 0;
         padding         : 0 rem($column-padding);
     }
-}
-
-@mixin columns {
-    @for $i from 1 through $grid-size {
-        $width : ($i / $grid-size) * 100%;
-        &#{$i} {
-            flex-basis  : $width;
-            max-width   : $width;
-        }
-    }
-
-    &-start   { @include position (flex-start, start); }
-    &-center  { @include position (center, center);    }
-    &-end     { @include position (flex-end, end);     }
-    &-top     { align-items      : flex-start;         }
-    &-middle  { align-items      : center;             }
-    &-bottom  { align-items      : flex-end;           }
-    &-around  { justify-content  : space-around;       }
-    &-between { justify-content  : space-between;      }
-}   
-
-@mixin position ($flexpos, $flexalign) {
-    justify-content : $flexpos;
-    text-align      : $flexalign;
 }
 
 // Breakpoint Mixins
@@ -62,9 +43,14 @@
         .#{$name}-around  { justify-content  : space-around;       }
         .#{$name}-between { justify-content  : space-between;      }
     }
+    @if $breakpoint-limiting == yes {
+        .#{$name}-hide   { display : none; }
+    }
 }
 
+// Creating the grid with all mixins
 @mixin createGrid($breakpoints) {
+    @include columns-property($breakpoints);
     @each $name, $break in $breakpoints {
         @if $break == "no" {
             @include createColumns($name);

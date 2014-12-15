@@ -21,3 +21,50 @@ img {
 }
 
 // Fixing responsive embedded
+
+
+// Navigation bar
+.nav-top {
+	background: $navbar-bgcolor;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	width: 100%;
+	@if $navbar-big == right  { justify-content: flex-end; }
+	@else if $navbar-big == left   { justify-content: flex-start; }
+	@else if $navbar-big == spaced { justify-content: space-around; }
+
+	a {
+		text-decoration: none;
+		padding: 0.5rem 1rem;
+		color: white;
+
+		&:hover {
+			background: darken($navbar-bgcolor, 5%);
+		}
+	}
+}
+
+@media all and (max-width: 48rem) { // legg til verdi fra l verdi i $breakpoints
+  .nav-top {
+    @if $navbar-medium == right { justify-content: flex-end; }
+	@else if $navbar-medium == left  { justify-content: flex-start; }
+	@else if $navbar-medium == spaced { justify-content: space-around; }
+  }
+}
+
+@media all and (max-width: 30rem) { // Legg til verdi fra m verdi i $breakpoints
+	.nav-top {
+		@if $navbar-small == right { justify-content: flex-end; }
+		@if $navbar-small == left  { justify-content: flex-start; }
+		@if $navbar-small == spaced { justify-content: space-around; }
+		-webkit-flex-flow: column wrap;
+		flex-flow: column wrap;
+
+		a { 
+			text-align: center; 
+			padding: 10px;
+			border-top: 1px solid rgba(255,255,255,0.3); 
+			border-bottom: 1px solid rgba(0,0,0,0.1); 
+		}
+	}
+}

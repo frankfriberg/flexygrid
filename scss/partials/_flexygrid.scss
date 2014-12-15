@@ -11,7 +11,7 @@
 @if $limit-width == "yes" {
 	.row {
 		max-width 	: rem($grid-width);
-		margin		: auto;
+		margin		: 0 auto;
 	}
 }
 
@@ -31,5 +31,5 @@
 	max-width	: 100%;
 }
 
-// Create the grid with breakpoints
+// Create the grid with breakpoints and column properties
 @include createGrid($breakpoints);
