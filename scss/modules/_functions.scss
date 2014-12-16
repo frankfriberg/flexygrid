@@ -1,11 +1,19 @@
 // _functions.scss
 
+// Unit stripper
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
 // PX to EM
 @function em($px, $base: $base-font-size) {
-    @return ($px / $base) * 1em;
+	$px-out: strip-units($px);
+    @return ($px-out / $base) * 1em;
 }
 
 // PX to REM
-@function rem($px, $base: 16px) {
-    @return ($px / $base) * 1rem;
+@function rem($px) {
+	$px-out: strip-units($px);
+	$rem-size: $px-out / 16;
+    @return #{$rem-size}rem;
 }
